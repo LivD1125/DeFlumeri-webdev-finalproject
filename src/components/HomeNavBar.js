@@ -4,7 +4,8 @@ import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import MenuItem from 'react-bootstrap/lib/MenuItem';
 import NavDropdown from 'react-bootstrap/lib/NavDropdown';
-
+import Link from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default class HomeNavBar extends React.Component {
     render() {
@@ -18,7 +19,9 @@ export default class HomeNavBar extends React.Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
+                        <LinkContainer to="/profile/4">
                         <NavItem eventKey={1} href="#">Profile</NavItem>
+                        </LinkContainer>
                         <NavDropdown eventKey={2} title="Gifts" id="basic-nav-dropdown">
                             <MenuItem eventKey={2.1}>Find a Gift</MenuItem>
                             <MenuItem eventKey={2.2}>Send a Gift</MenuItem>
@@ -27,8 +30,9 @@ export default class HomeNavBar extends React.Component {
                         </NavDropdown>
                     </Nav>
                     <Nav pullRight>
-                        <NavItem eventKey={1} href="#">Google Login</NavItem>
-                        <NavItem eventKey={2} href="#">Facebook Login</NavItem>
+                        <LinkContainer to="/login">
+                            <NavItem eventKey={3}>Login</NavItem>
+                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

@@ -7,7 +7,7 @@ export default class HomeNavBar extends React.Component {
             <Navbar fixedBottom>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">Sunshine</a>
+                        <a href="/about">About</a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
