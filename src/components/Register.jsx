@@ -3,7 +3,7 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import Button from 'react-bootstrap/lib/Button';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
-import createUser from '../utilities/Services';
+import { createUser } from '../utilities/Services';
 
 
 export default class Register extends React.Component {
