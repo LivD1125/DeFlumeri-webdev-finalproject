@@ -1,8 +1,8 @@
 // src/components/Layout.js
 import React from 'react';
 import { Link } from 'react-router';
-import HomeNavBar from './HomeNavBar';
-import HomeFooter from './HomeFooter';
+import HomeNavBar from './Nav/HomeNavBar';
+import HomeFooter from './Nav/HomeFooter';
 import Grid from 'react-bootstrap/lib/Grid';
 export default class Layout extends React.Component {
     render() {

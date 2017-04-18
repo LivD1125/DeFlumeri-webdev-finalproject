@@ -5,7 +5,7 @@ import IndexPage from './components/IndexPage';
 import NotFoundPage from './components/NotFoundPage';
 import Login from './components/Login';
 import Register from './components/Register.jsx';
-import Profile from './components/Profile';
+import Profile from './components/Profile/Profile';
 import About from './components/About';
 
 const routes = (
