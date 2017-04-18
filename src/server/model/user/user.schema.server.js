@@ -8,13 +8,12 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
-        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'AssignmentMongoWebsites'}],
         dateCreated: {type: Date, default: Date.now},
         facebook: {
             id:    String,
             token: String
         }
-    }, {collection: 'assignments.mongo.user'});
+    }, {collection: 'sunshine.mongo.user'});
 
     return userSchema;
 };

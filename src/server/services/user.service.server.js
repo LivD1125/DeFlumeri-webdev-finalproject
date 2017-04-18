@@ -75,15 +75,19 @@ module.exports = function (app) {
     }
     function register(req, res) {
         var user = req.body;
+        console.log(user);
         user.username = user.username.toLocaleLowerCase();
         user.password = bcrypt.hashSync(user.password);
         model
             .createUser(user)
             .then(function (user) {
+                console.log(user);
                 req.login(user, function (err) {
                     if(err) {
+                        console.log(err);
                         res.send(400)
                     } else {
+                        console.log(user);
                         res.json(user);
                     }
                 });

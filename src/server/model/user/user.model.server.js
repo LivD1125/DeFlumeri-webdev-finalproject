@@ -3,7 +3,7 @@ module.exports = function (model) {
     var mongoose = require('mongoose');
     var userSchema = require('./user.schema.server.js')();
 
-    var userModel = mongoose.model('AssignmentMongoUsers', userSchema);
+    var userModel = mongoose.model('SunshineMongoUsers', userSchema);
     userModel.findUserById = findUserById;
     userModel.deleteUser = deleteUser;
     var api = {
@@ -90,12 +90,15 @@ module.exports = function (model) {
 
 
     function createUser(user) {
+        console.log('createUser');
+        console.log(user);
         var deferred = q.defer();
         userModel.create(user, function (err, doc) {
             if(err) {
+                console.log(err);
                 deferred.reject(err);
             } else {
-
+                console.log(doc);
                 deferred.resolve(doc);
             }
         });
