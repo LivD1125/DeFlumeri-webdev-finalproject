@@ -7,17 +7,56 @@ import Button from 'react-bootstrap/lib/Button';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
+import { login } from '../utilities/Services';
 
 export default class Login extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            errors: {},
+            user: {
+                username: '',
+                password: '',
+            }
+        };
+
+        this.processForm = this.processForm.bind(this);
+        this.changeUser = this.changeUser.bind(this);
+    }
+
+    processForm(event) {
+        console.log('process');
+        // prevent default action. in this case, action is the form submission event
+        event.preventDefault();
+        var us = login(this.state.user);
+        console.log(us);
+    }
+
+    changeUser(event) {
+        const field = event.target.name;
+        const user = this.state.user;
+        user[field] = event.target.value;
+
+        this.setState({
+            user
+        });
+    }
     render() {
         return (
                 <Form horizontal>
                     <FormGroup controlId="formHorizontalEmail">
                         <Col componentClass={ControlLabel} sm={2}>
-                            Email
+                            Username
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="email" placeholder="Email" />
+                            <FormControl
+                                type="username"
+                                name="username"
+                                value={this.state.user.username}
+                                onChange={this.changeUser}
+                                placeholder="Email" />
                         </Col>
                     </FormGroup>
 
@@ -26,7 +65,12 @@ export default class Login extends React.Component {
                             Password
                         </Col>
                         <Col sm={10}>
-                            <FormControl type="password" placeholder="Password" />
+                            <FormControl
+                                type="password"
+                                name="password"
+                                value={this.state.user.password}
+                                onChange={this.changeUser}
+                                placeholder="Password" />
                         </Col>
                     </FormGroup>
 
@@ -38,7 +82,7 @@ export default class Login extends React.Component {
 
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
-                            <Button type="submit">
+                            <Button onClick={this.processForm} type="submit">
                                 Sign in
                             </Button>
                         </Col>

@@ -119,7 +119,8 @@ module.exports = function (app) {
                     }
                 },
                 function(err) {
-                    if (err) { return done(err); }
+                    if (err) {
+                        return done(err); }
                 }
             );
     }
