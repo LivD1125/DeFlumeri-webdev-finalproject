@@ -1,8 +1,4 @@
 module.exports = function(app) {
-    require("./services/user.service.server.js")(app);
-    require("./services/website.service.server.js")(app);
-    require("./services/page.service.server.js")(app);
-    require("./services/widget.service.server.js")(app);
 
     var connectionString = 'mongodb://127.0.0.1:27017/test';
 
@@ -16,4 +12,9 @@ module.exports = function(app) {
 
     var mongoose = require("mongoose");
     mongoose.connect(connectionString);
+
+    require("./services/user.service.server.js")(app);
+    require("./services/website.service.server.js")(app);
+    require("./services/page.service.server.js")(app);
+    require("./services/widget.service.server.js")(app);
 };

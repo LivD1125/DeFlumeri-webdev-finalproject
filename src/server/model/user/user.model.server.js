@@ -1,9 +1,7 @@
 module.exports = function (model) {
     var q = require('q');
     var mongoose = require('mongoose');
-    var userSchema = require('./user.schema.server.js')();
-
-    var userModel = mongoose.model('SunshineMongoUsers', userSchema);
+    var userModel = require('./user.schema.server.js');
     userModel.findUserById = findUserById;
     userModel.deleteUser = deleteUser;
     var api = {

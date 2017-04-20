@@ -3,6 +3,7 @@ module.exports = function (app) {
     var passport = require('passport');
     var bcrypt = require("bcrypt-nodejs");
     var LocalStrategy = require('passport-local').Strategy;
+    const jwt = require('jsonwebtoken');
     passport.use(new LocalStrategy(localStrategy));
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -95,11 +96,15 @@ module.exports = function (app) {
     }
 
     function login(req, res) {
+        console.log('login');
         var user = req.user;
+        var token = req.token;
         res.json(user);
     }
 
     function loggedin(req, res) {
+        console.log('logged in server');
+        console.log(req.isAuthenticated());
         res.send(req.isAuthenticated() ? req.user : '0');
     }
 
@@ -113,13 +118,22 @@ module.exports = function (app) {
             .then(
                 function(user) {
                     if (user && bcrypt.compareSync(password, user.password)) {
-                        return done(null, user);
+                        const payload = {
+                            sub: user._id
+                        };
+                        const token = jwt.sign(payload, 'this is a secret!');
+                        const data = {
+                            token: token,
+                            user: user
+                        };
+                        return done(null, data, token);
                     } else {
                         return done(null, false);
                     }
                 },
                 function(err) {
                     if (err) {
+                        console.log(err);
                         return done(err); }
                 }
             );

@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -d --watch",
-    "build": "webpack -p",
-    "start": "babel-node src/server.js --presets es2015 react"
+    "build": "node_modules/.bin/webpack -p",
+    "start": "node_modules/.bin/babel-node --presets react,es2015 src/server.js"
   },
   "repository": {
     "type": "git",
@@ -34,8 +34,10 @@
     "ejs": "^2.5.6",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
+    "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.9.5",
     "node-jsx": "^0.13.3",
+    "node-sass": "^4.5.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
@@ -43,13 +45,20 @@
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.3.2",
+    "react-redux": "^5.0.4",
     "react-router": "^2.6.1",
-    "react-router-bootstrap": "^0.23.1"
+    "react-router-bootstrap": "^0.23.1",
+    "redux": "^3.6.0",
+    "validator": "^7.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-loader": "^6.2.10",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
     "http-server": "^0.9.0",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
     "webpack": "^1.13.3"
   }
 }

@@ -10,13 +10,18 @@ module.exports = {
     },
     module: {
         loaders: [{
-            test: path.join(__dirname, 'src'),
+            test: /\.js$/,
             loader: ['babel-loader'],
             query: {
                 cacheDirectory: 'babel_cache',
                 presets: ['react', 'es2015']
             }
-        }]
+        },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
+            }
+        ]
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -30,6 +35,6 @@ module.exports = {
             sourcemap: false,
             beautify: false,
             dead_code: true
-        })
+        }),
     ]
 };

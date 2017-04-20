@@ -9,6 +9,7 @@ import FormControl from 'react-bootstrap/lib/FormControl';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
 import { login } from '../utilities/Services';
 
+
 export default class Login extends React.Component {
 
     constructor(props) {
@@ -30,8 +31,12 @@ export default class Login extends React.Component {
         console.log('process');
         // prevent default action. in this case, action is the form submission event
         event.preventDefault();
-        var us = login(this.state.user);
-        console.log(us);
+        login(this.state.user, function(res) {
+            console.log('resposeeee');
+            console.log(res.data);
+            console.log(res.data.token);
+
+        });
     }
 
     changeUser(event) {

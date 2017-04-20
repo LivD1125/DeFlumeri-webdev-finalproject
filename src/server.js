@@ -8,6 +8,10 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotFoundPage from './components/NotFoundPage';
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var bodyParser = require('body-parser');
+var passport = require('passport');
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
@@ -51,8 +55,30 @@ app.get('*', (req, res) => {
     );
 });
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use(cookieParser());
+app.use(session({
+    secret: 'this is the secret', // process.env.SESSION_SECRET
+    resave: true,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+require("./server/app.js")(app);
+// pass the authenticaion checker middleware
+const authCheckMiddleware = require('./server/middleware/auth-check');
+app.use('/api', authCheckMiddleware);
+
+// routes
+const authRoutes = require('./server/routes/auth');
+app.use('/auth', authRoutes);
+
 // start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3003;
 const env = process.env.NODE_ENV || 'production';
 server.listen(port, err => {
     if (err) {
